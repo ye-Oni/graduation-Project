@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>여행타입 테스트</title>
+    <link rel="icon" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/img/Fevicon.png" type="image/png">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/vendors/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/vendors/linericon/style.css">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/vendors/owl-carousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/vendors/flat-icon/font/flaticon.css">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/vendors/nice-select/nice-select.css">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/css/style.css">
+    <script src="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/js/main.js"></script>
+  <style>
+    body {
+     font-family: sans-serif;
+    }
+    h2{
+    color: white;
+    padding-top: 30px;
+    font-size: 50px;
+    }
+    #div1{
+      text-align: center;
+      background-color: #a39ffa;
+    }
+    #div1 p{
+      font-size: 25px;
+      padding-bottom: 20px;
+      color: white;
+    }
+    #div2{
+      font-size: 23px;
+      text-align: center;
+      padding-top: 75px;
+    }
+    </style>
+</head>
+<body>
+
+
+ <header class="header_area">
+     <div class="main_menu">
+         <nav class="navbar navbar-expand-lg navbar-light">
+             <div class="container box_1620">
+                 <a class="navbar-brand logo_h" href="/"></a>
+                 <a class="button" href="/">또바기</a>
+                 <button class="navbar-toggler" type="button" data-toggle="collapse"
+                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                         aria-expanded="false" aria-label="Toggle navigation">
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                 </button>
+
+                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                     <ul class="nav navbar-nav menu_nav justify-content-end">
+                         <li class="nav-item active"><a class="nav-link" href="/">HOME</a></li>
+                         {% if user.is_authenticated %}
+                         <li class="nav-item"><a class="nav-link" href="#" class="nav-link">반갑습니다, {{user.get_username}}님!</a></li>
+                         <li class="nav-item"><a class="nav-link" href="{% url 'accounts:logout' %}" class="nav-link">로그아웃</a></li>
+                         {% else %}
+                         <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}" class="nav-link">로그인</a></li>
+                         <li class="nav-item"><a class="nav-link" href="{% url 'accounts:register' %}" class="nav-link">회원가입</a></li>
+                         {% endif %}
+                         <li class="nav-item submenu dropdown">
+                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">추천 테스트</a>
+                         <ul class="dropdown-menu">
+                             <li class="nav-item"><a class="nav-link" href="{%url 'recommendApp:recommend_index' %}">여행지 추천</a>
+                             <li class="nav-item"><a class="nav-link" href="{%url 'c_type:index' %}">성격유형</a>
+                         </ul></li>
+<!--                         <li class="nav-item"><a class="nav-link" href="{% url 'photo:photo_list' %}" class="nav-link">커뮤니티</a></li>-->
+                         <li class="nav-item submenu dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                              aria-expanded="false">커뮤니티</a>
+                            <ul class="dropdown-menu">
+                              <li class="nav-item"><a class="nav-link" href="{% url 'photo:photo_list' %}">글 목록</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{% url 'photo:photo_upload' %}">글 작성</a></li>
+                            </ul>
+                         </li>
+                         <li class="nav-item"><a class="nav-link" href="{% url 'notice:notice' %}">공지사항</a></li>
+                     </ul>
+                 </div>
+             </div>
+         </nav>
+     </div>
+ </header>
+  <div class="container" style="position:relative; top:100px;">
+      <div id="div1">
+        <h2 >여행타입 테스트 결과 🚅</h2>
+        <p >"{{title}}"</p>
+      </div>
+      <div class="row" id="div2">
+        <strong style="color:black;">
+        <p>{{user.get_username}}님의 여행타입 테스트 결과는 "{{title}}" 로 나왔습니다!
+          <br>
+          또바기에서 {{user.get_username}}님께 추천드리는 여행:
+        </p>{{result}}
+      </strong>
+      </div>
+  </div>
+
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>여행타입 테스트</title>
+
+  <style>
+        .container{
+      width: 100%;
+      height: 100%;
+    }
+    html{
+      width: 100%;
+     height: 100%;
+    }
+    body {
+      font-family: sans-serif;
+      display: flex;
+     background-color: #f8f8ff;
+     width: 100%;
+     height: 100%;
+    
+    }
+    h2{
+    color: white;
+    padding-top: 30px;
+    font-size: 50px;
+    }
+    #div1{
+      text-align: center;
+      padding-bottom: 60px;
+      width: 100%;
+      height: 140px;
+      background-color: #a39ffa;
+    }
+    #div1 p{
+      font-size: 25px;
+      color: white;
+    }
+    #div2{
+      font-size: 23px;
+      text-align: center;
+      padding-top: 75px;
+    }
+    </style>
+</head>
+<body>
+  <div class="container">
+  <div class="row" id="div1">
+    <h2>여행타입 테스트 결과 🚅</h2>
+    <p>"{{title}}"</p>
+  </div>
+  <div class="row" id="div2">
+    <strong>
+    <p>사용자님의 여행타입 테스트 결과는 "{{title}}" 로 나왔습니다!
+      <br>
+      또바기에서 사용자님께 추천드리는 여행은
+    </p>
+    {{result}}
+  </strong>
+  </div>
+  </div>
+    
+    
+</body>
+</html>
+

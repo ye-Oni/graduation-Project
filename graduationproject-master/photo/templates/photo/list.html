@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}- 커뮤니티{% endblock %}
+
+{% block content %}
+<!--    <a href="{% url 'photo:photo_upload'%}" class="btn btn-xs btn-success" style="position: fixed; float:right; right:100px; top:100px;">글쓰기</a>-->
+    {% for post in photos %}
+        <div class="row float-left" style="width:33%; position: relative; top:100px;">
+            <div class="col-md-3"></div>
+            <div class="mycontent" style="width:300px;">
+                <p><img src="{{post.photo.url}}" style="width:300px; height:300px;"></p>
+                <button type="button" class="btn btn-xs btn-info">
+                    작성자 : {{post.author.username}}</button>
+                <p class="text-right" style="display:inline;float: right;">
+                    <a href="{% url 'photo:photo_detail' pk=post.id %}" class="btn btn-xs btn-success">댓글달기</a>
+                </p><p></p>
+                <p style="display:inline;">{{post.summary|linebreaksbr}}</p><a href="{%url 'photo:photo_detail' pk=post.id%}">...더보기</a>
+                <br><br>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    {% endfor %}
+
+<!--<div class = "pagination" style="position:fixed; margin-left: -10%; left: 50%; bottom:30px;">-->
+<!--    &lt;!&ndash; 페이징처리 시작 &ndash;&gt;-->
+<!--    <ul class="pagination justify-content-center">-->
+<!--        &lt;!&ndash; 이전페이지 &ndash;&gt;-->
+<!--        {% if posts.has_previous %}-->
+<!--        <li class="page-item">-->
+<!--            <a class="page-link" href="?page={{ posts.previous_page_number }}">이전</a>-->
+<!--        </li>-->
+<!--        {% else %}-->
+<!--        <li class="page-item disabled">-->
+<!--            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>-->
+<!--        </li>-->
+<!--        {% endif %}-->
+<!--        &lt;!&ndash; 페이지리스트 &ndash;&gt;-->
+<!--        {% for page_number in posts.paginator.page_range %}-->
+<!--        {% if page_number >= posts.number|add:-5 and page_number <= posts.number|add:5 %}-->
+<!--            {% if page_number == posts.number %}-->
+<!--            <li class="page-item active" aria-current="page">-->
+<!--                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>-->
+<!--            </li>-->
+<!--            {% else %}-->
+<!--            <li class="page-item">-->
+<!--                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>-->
+<!--            </li>-->
+<!--            {% endif %}-->
+<!--        {% endif %}-->
+<!--        {% endfor %}-->
+<!--        &lt;!&ndash; 다음페이지 &ndash;&gt;-->
+<!--        {% if posts.has_next %}-->
+<!--        <li class="page-item">-->
+<!--            <a class="page-link" href="?page={{ posts.next_page_number }}">다음</a>-->
+<!--        </li>-->
+<!--        {% else %}-->
+<!--        <li class="page-item disabled">-->
+<!--            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>-->
+<!--        </li>-->
+<!--        {% endif %}-->
+<!--    </ul>-->
+<!--</div>-->
+    <!-- 페이징처리 끝 -->
+
+<!--<div class = "pagination" style="position:fixed; margin-left: -187.26px; left: 50%; bottom:10px;">-->
+<!--    {#first previous#}-->
+<!--    {% if posts.has_previous %}-->
+<!--    <a href="?page=1">|첫페이지|</a>&nbsp;&nbsp;&nbsp;-->
+<!--    <a href="?page={{posts.previous_page_number}}">|이전페이지|</a>&nbsp;&nbsp;&nbsp;-->
+<!--    {% endif %}-->
+<!--    {# 3of4 #}-->
+<!--    <span>{{posts.number}}</span>-->
+<!--    <span>of</span>-->
+<!--    <span>{{posts.paginator.num_pages}}</span>-->
+<!--    {# Next Last #}-->
+<!--    {% if posts.has_next %}&nbsp;&nbsp;&nbsp;-->
+<!--    <a href="?page={{posts.next_page_number}}">|다음페이지|</a>&nbsp;&nbsp;&nbsp;-->
+<!--    <a href="?page={{posts.paginator.num_pages}}">|끝페이지|</a>-->
+<!--    {%endif%}-->
+<!--</div>-->
+
+{% endblock %}

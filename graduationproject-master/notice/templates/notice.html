@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}- 공지사항{% endblock %}
+
+{% block content %}
+
+<div class="content" style="position:relative; top:150px;">
+    <div class="pull-right" style="position:relative; float:left; left:15%;">
+        <form class="form-inline my-2 my-lg-0 pull-right" action="{% url 'notice:result' %}" method="GET">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" name="query">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">검색</button>
+        </form>
+    </div>
+    <br>
+    <div class="card-body" style="position:relative; top:150px;"></div>
+        {% for notice in posts %}
+        <div class="container">
+            <div class="list-group">
+                <a href="{% url 'notice:detail' notice.id %}" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{notice.title}}</h5>
+                        <small class="text-muted">{{notice.pub_date|date:"Y년m월d일"}}</small>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    <br>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+            <a class="page-link" href="?page=1">처음</a>
+            </li>
+            {% if posts.has_previous %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{posts.previous_page_number}}">이전</a>
+            </li>
+            {% endif %}
+
+            <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+            <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+            <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+
+            {% if posts.has_next %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{posts.next_page_number}}">다음</a>
+            </li>
+            {% endif %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{posts.paginator.num_pages}}">마지막</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+{% endblock %}

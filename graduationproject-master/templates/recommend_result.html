@@ -1,0 +1,131 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>맞춤형 추천 여행지 테스트</title>
+    <link rel="icon" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/img/Fevicon.png" type="image/png">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/vendors/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/vendors/linericon/style.css">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/vendors/owl-carousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/vendors/flat-icon/font/flaticon.css">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/vendors/nice-select/nice-select.css">
+    <link rel="stylesheet" href="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/css/style.css">
+    <script src="https://ddobagi.s3.ap-northeast-2.amazonaws.com/static/js/main.js"></script>
+
+  <style>
+        .container{
+      width: 100%;
+      height: 100%;
+    }
+    html{
+      width: 100%;
+     height: 100%;
+    }
+    body {
+      font-family: sans-serif;
+      display: flex;
+     background-color: #f8f8ff;
+     width: 100%;
+     height: 100%;
+
+    }
+    h2{
+    color: white;
+    padding-top: 30px;
+    font-size: 50px;
+    }
+    #div1{
+      text-align: center;
+      padding-bottom: 60px;
+      width: 100%;
+      height: 140px;
+      background-color: #a39ffa;
+    }
+    #div1 p{
+      font-size: 25px;
+      color: white;
+    }
+    #div2{
+      font-size: 23px;
+      text-align: center;
+      padding-top: 75px;
+    }
+    </style>
+</head>
+
+ <header class="header_area">
+     <div class="main_menu">
+         <nav class="navbar navbar-expand-lg navbar-light">
+             <div class="container box_1620">
+                 <a class="navbar-brand logo_h" href="/"></a>
+                 <a class="button" href="/">또바기</a>
+                 <button class="navbar-toggler" type="button" data-toggle="collapse"
+                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                         aria-expanded="false" aria-label="Toggle navigation">
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                 </button>
+
+                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                     <ul class="nav navbar-nav menu_nav justify-content-end">
+                         <li class="nav-item active"><a class="nav-link" href="/">HOME</a></li>
+                         {% if user.is_authenticated %}
+                         <li class="nav-item"><a class="nav-link" href="#" class="nav-link">반갑습니다, {{user.get_username}}님!</a></li>
+                         <li class="nav-item"><a class="nav-link" href="{% url 'accounts:logout' %}" class="nav-link">로그아웃</a></li>
+                         {% else %}
+                         <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}" class="nav-link">로그인</a></li>
+                         <li class="nav-item"><a class="nav-link" href="{% url 'accounts:register' %}" class="nav-link">회원가입</a></li>
+                         {% endif %}
+                         <li class="nav-item submenu dropdown">
+                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">추천 테스트</a>
+                         <ul class="dropdown-menu">
+                             <li class="nav-item"><a class="nav-link" href="{%url 'recommendApp:recommend_index' %}">여행지 추천</a>
+                             <li class="nav-item"><a class="nav-link" href="{%url 'c_type:index' %}">성격유형</a>
+                         </ul></li>
+<!--                         <li class="nav-item"><a class="nav-link" href="{% url 'photo:photo_list' %}" class="nav-link">커뮤니티</a></li>-->
+                         <li class="nav-item submenu dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                              aria-expanded="false">커뮤니티</a>
+                            <ul class="dropdown-menu">
+                              <li class="nav-item"><a class="nav-link" href="{% url 'photo:photo_list' %}">글 목록</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{% url 'photo:photo_upload' %}">글 작성</a></li>
+                            </ul>
+                         </li>
+                         <li class="nav-item"><a class="nav-link" href="{% url 'notice:notice' %}">공지사항</a></li>
+                     </ul>
+                 </div>
+             </div>
+         </nav>
+     </div>
+ </header>
+<body>
+  <div class="container" style="position:relative; top:100px;">
+  <div class="row" id="div1">
+    <h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        나의 맞춤형 추천 여행지는?</h2>
+   <br><br> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;{{user.get_username}}님의 맞춤형 추천 여행지 결과 입니다!</p>
+  </div>
+  <div class="row" id="div2">
+    <strong>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            맞춤형 추천 여행지는 "{{localtest}}" 입니다!</p>
+  </strong>
+  </div>
+  </div>
+</body>
+</html>

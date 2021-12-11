@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}- 공지사항상세{% endblock %}
+
+{% block content %}
+
+<div class="container" style="position: relative; top:100px;">
+    <br>
+    <div class="card text-center">
+        <div class="card-body">
+            <h3 class="card-title">{{details.title}}</h3>
+            <h6 class="card-subtitle mb-2 text-muted">{{details.pub_date|date:"Y년m월d일"}}</h6>
+            <p class="card-text">{{details.body}}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

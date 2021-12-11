@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}- Login{% endblock %}
+
+{% block content %}
+        <div class="row" style="position: relative; top:100px;">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 panel panel-default">
+                <div class="alert alert-info">로그아웃되었습니다.</div>
+                <a class="btn btn-primary" href="{% url 'accounts:login' %}">로그인하려면 클릭하세요.</a>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+{% endblock %}

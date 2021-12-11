@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}- 공지사항검색{% endblock %}
+
+{% block content %}
+
+<div class="content" style="position:relative; top:150px;">
+    <div class="pull-right" style="position:relative; float:left; left:15%;">
+        <form class="form-inline my-2 my-lg-0 pull-right" action="{% url 'notice:result' %}" method="GET">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" name="query">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">검색</button>
+        </form>
+    </div>
+    <br>
+    <div class="card-body" style="position:relative; top:150px;"></div>
+        {% for notice in posts %}
+            <div class="container">
+                <div class="list-group">
+                    <a href="{% url 'notice:detail' notice.id %}" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{notice.title}}</h5>
+                            <small class="text-muted">{{notice.pub_date|date:"Y년m월d일"}}</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    <br>
+
+</div>
+{% endblock %}
